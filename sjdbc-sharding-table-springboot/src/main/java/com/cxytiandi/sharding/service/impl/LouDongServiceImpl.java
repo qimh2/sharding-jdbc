@@ -1,7 +1,8 @@
-package com.cxytiandi.sharding.service;
+package com.cxytiandi.sharding.service.impl;
 
 import java.util.List;
 
+import com.cxytiandi.sharding.service.LouDongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
