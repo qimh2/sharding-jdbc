@@ -3,6 +3,7 @@ package com.cxytiandi.sharding.repository;
 import com.cxytiandi.sharding.dto.OrderDTO;
 import com.cxytiandi.sharding.po.Order;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface OrderRepository {
 	
 	List<Order> list();
 
-	Order findById(Long id);
+	Order findById(@Param("id") Long id, @Param("userId") Long userId);
 
 	List<OrderDTO> findUserOrder(OrderDTO orderDTO);
 

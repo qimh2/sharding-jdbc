@@ -22,7 +22,7 @@
     </select>
 	
 	<select id="findById" resultMap="baseResultMap">
-        SELECT u.* FROM order u WHERE u.id=#{id,jdbcType=INTEGER}
+        SELECT u.* FROM order u WHERE u.id=#{id,jdbcType=INTEGER} and u.user_id = #{userId}
     </select>
 
     <select id="findUserOrder" parameterType="com.cxytiandi.sharding.dto.OrderDTO" resultType="com.cxytiandi.sharding.dto.OrderDTO">

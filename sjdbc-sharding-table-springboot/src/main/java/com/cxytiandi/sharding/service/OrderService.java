@@ -11,7 +11,7 @@ public interface OrderService {
 	
 	Long add(Order order);
 
-    Order findById(Long id);
+    Order findById(Long id,Long userId);
 
     List<OrderDTO> findUserOrder(OrderDTO orderDTO);
 
