@@ -25,6 +25,10 @@
         SELECT u.* FROM order u WHERE u.id=#{id,jdbcType=INTEGER} and u.user_id = #{userId}
     </select>
 
+    <select id="findByUserIdAndMobile" resultMap="baseResultMap">
+        SELECT u.* FROM order u WHERE  u.user_id = #{userId} and u.mobile=#{mobile}
+    </select>
+
     <select id="findUserOrder" parameterType="com.cxytiandi.sharding.dto.OrderDTO" resultType="com.cxytiandi.sharding.dto.OrderDTO">
        SELECT
             a.*, b.id,b.user_id as userId

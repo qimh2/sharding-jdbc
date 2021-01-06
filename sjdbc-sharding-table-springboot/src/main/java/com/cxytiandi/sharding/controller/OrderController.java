@@ -42,6 +42,12 @@ public class OrderController {
 		orderDTO.setId(id);
 		return orderService.findUserOrder(orderDTO);
 	}
+
+    @GetMapping("/findUserOrderNotLeftJoin/{userId}/{mobile}")
+    public Object findUserOrderNotLeftJoin(@PathVariable Long userId,@PathVariable String mobile) throws Exception {
+        return orderService.findUserOrderNotLeftJoin(userId,mobile);
+
+    }
 	
 
 	

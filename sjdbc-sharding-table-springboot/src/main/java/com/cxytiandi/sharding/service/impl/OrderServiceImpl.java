@@ -4,6 +4,7 @@ import com.cxytiandi.sharding.dto.OrderDTO;
 import com.cxytiandi.sharding.po.Order;
 import com.cxytiandi.sharding.po.User;
 import com.cxytiandi.sharding.repository.OrderRepository;
+import com.cxytiandi.sharding.repository.UserRepository;
 import com.cxytiandi.sharding.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
 
     @Override
@@ -34,5 +38,23 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderDTO> findUserOrder(OrderDTO orderDTO) {
         return orderRepository.findUserOrder(orderDTO);
+    }
+
+    @Override
+    public OrderDTO findUserOrderNotLeftJoin(Long userId,String mobile) throws Exception {
+        User user = userRepository.findById(userId);
+        Order order = orderRepository.findByUserIdAndMobile(user.getId(),mobile);
+
+        if (null == order){
+            throw new Exception("订单不存在");
+        }
+
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setId(order.getId());
+        orderDTO.setUserId(user.getId());
+        orderDTO.setCity(user.getCity());
+        orderDTO.setName(user.getName());
+
+        return orderDTO;
     }
 }

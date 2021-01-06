@@ -16,6 +16,7 @@ public interface OrderRepository {
 	List<Order> list();
 
 	Order findById(@Param("id") Long id, @Param("userId") Long userId);
+	Order findByUserIdAndMobile( @Param("userId") Long userId,@Param("mobile") String mobile);
 
 	List<OrderDTO> findUserOrder(OrderDTO orderDTO);
 

@@ -15,4 +15,6 @@ public interface OrderService {
 
     List<OrderDTO> findUserOrder(OrderDTO orderDTO);
 
+    OrderDTO findUserOrderNotLeftJoin(Long userId,String mobile) throws Exception;
+
 }
