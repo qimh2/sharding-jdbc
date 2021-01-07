@@ -1,6 +1,6 @@
-package com.cxytiandi.sharding.po;
+package com.cxytiandi.sharding.dto;
 
-public class TOrderItem {
+public class TOrderItemDTO {
     private Long orderItemId;
 
     private Long orderId;

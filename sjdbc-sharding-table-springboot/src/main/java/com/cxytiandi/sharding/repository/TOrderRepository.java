@@ -1,16 +1,17 @@
 package com.cxytiandi.sharding.repository;
 
-import com.cxytiandi.sharding.dto.OrderDTO;
-import com.cxytiandi.sharding.po.Order;
 import com.cxytiandi.sharding.po.TOrder;
-import java.util.List;
+import com.cxytiandi.sharding.po.TOrderItem;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 
 @Mapper
 public interface TOrderRepository {
 
-	List<TOrder> findOrder(TOrder tOrder);
+	long addOrder(TOrder tOrder);
+
+	List<TOrder> findOrder(TOrderItem tOrderItem);
 
 }

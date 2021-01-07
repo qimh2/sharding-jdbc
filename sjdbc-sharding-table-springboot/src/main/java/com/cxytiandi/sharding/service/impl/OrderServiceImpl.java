@@ -1,10 +1,13 @@
 package com.cxytiandi.sharding.service.impl;
 
 import com.cxytiandi.sharding.dto.OrderDTO;
+import com.cxytiandi.sharding.dto.TOrderItemDTO;
 import com.cxytiandi.sharding.po.Order;
 import com.cxytiandi.sharding.po.TOrder;
+import com.cxytiandi.sharding.po.TOrderItem;
 import com.cxytiandi.sharding.po.User;
 import com.cxytiandi.sharding.repository.OrderRepository;
+import com.cxytiandi.sharding.repository.TOrderItemRepository;
 import com.cxytiandi.sharding.repository.TOrderRepository;
 import com.cxytiandi.sharding.repository.UserRepository;
 import com.cxytiandi.sharding.service.OrderService;
@@ -23,6 +26,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private TOrderRepository tOrderRepository;
+
+    @Autowired
+    private TOrderItemRepository tOrderItemRepository;
 
 
     @Override
@@ -64,7 +70,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<TOrder> findOrder(TOrder tOrder) {
-        return tOrderRepository.findOrder(tOrder);
+    public List<TOrder> findOrder(TOrderItem tOrderItem) {
+        return tOrderRepository.findOrder(tOrderItem);
+    }
+
+    @Override
+    public Long addOrder(TOrderItemDTO tOrderItemDTO) {
+        TOrder tOrder = new TOrder();
+        tOrder.setOrderId(tOrderItemDTO.getOrderId());
+        Long num = tOrderRepository.addOrder(tOrder);
+        Long num2 = tOrderItemRepository.addOrderItem(tOrderItemDTO);
+
+        return num + num2;
     }
 }

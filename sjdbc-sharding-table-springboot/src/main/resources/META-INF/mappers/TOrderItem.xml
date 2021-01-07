@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cxytiandi.sharding.repository.TOrderItemRepository">
+    
+    <resultMap id="baseResultMap" type="com.cxytiandi.sharding.po.TOrderItem">
+        <result column="orderId" property="id" jdbcType="INTEGER" />
+    </resultMap>
+
+
+    <insert id="addOrderItem">
+        INSERT INTO t_order_item (
+        order_item_id,order_id,brand_code
+        )
+        VALUES (
+        #{orderItemId,jdbcType=BIGINT},
+        #{orderId,jdbcType=BIGINT},
+        #{brandCode,jdbcType=TINYINT}
+
+        )
+    </insert>
+
+
+</mapper>

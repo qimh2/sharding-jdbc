@@ -1,8 +1,9 @@
 package com.cxytiandi.sharding.controller;
 
 import com.cxytiandi.sharding.dto.OrderDTO;
+import com.cxytiandi.sharding.dto.TOrderItemDTO;
 import com.cxytiandi.sharding.po.Order;
-import com.cxytiandi.sharding.po.TOrder;
+import com.cxytiandi.sharding.po.TOrderItem;
 import com.cxytiandi.sharding.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +34,18 @@ public class OrderController {
 		}
 		return "success";
 	}
+
+    @GetMapping("/addOrder")
+    public Object addOrder() {
+        for (long i = 0; i < 100; i++) {
+            TOrderItemDTO tOrderItemDTO = new TOrderItemDTO();
+            tOrderItemDTO.setOrderId(i);
+            tOrderItemDTO.setOrderItemId(i);
+            tOrderItemDTO.setBrandCode((byte) i);
+            orderService.addOrder(tOrderItemDTO);
+        }
+        return "success";
+    }
 	
 	@GetMapping("/order/{id}")
 	public Object get(@PathVariable Long id) {
@@ -51,11 +64,12 @@ public class OrderController {
 
     }
 
-	@GetMapping("/getOrder/{id}")
-	public Object getOrder(@PathVariable Long id) {
-		TOrder tOrder = new TOrder();
-		tOrder.setOrderId(id);
-		return orderService.findOrder(tOrder);
+	@GetMapping("/getOrder/{id}/{brandCode}")
+	public Object getOrder(@PathVariable Long id,@PathVariable Byte brandCode) {
+		TOrderItem tOrderItem = new TOrderItem();
+        tOrderItem.setOrderId(id);
+        tOrderItem.setBrandCode(brandCode);
+		return orderService.findOrder(tOrderItem);
 	}
 	
 }

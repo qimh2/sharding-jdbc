@@ -11,5 +11,6 @@
         <mapper resource="META-INF/mappers/LouDong.xml"/>
         <mapper resource="META-INF/mappers/Order.xml"/>
         <mapper resource="META-INF/mappers/TOrder.xml"/>
+        <mapper resource="META-INF/mappers/TOrderItem.xml"/>
     </mappers>
 </configuration>
