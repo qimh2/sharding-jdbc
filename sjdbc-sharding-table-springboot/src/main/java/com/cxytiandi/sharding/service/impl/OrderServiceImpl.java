@@ -2,8 +2,10 @@ package com.cxytiandi.sharding.service.impl;
 
 import com.cxytiandi.sharding.dto.OrderDTO;
 import com.cxytiandi.sharding.po.Order;
+import com.cxytiandi.sharding.po.TOrder;
 import com.cxytiandi.sharding.po.User;
 import com.cxytiandi.sharding.repository.OrderRepository;
+import com.cxytiandi.sharding.repository.TOrderRepository;
 import com.cxytiandi.sharding.repository.UserRepository;
 import com.cxytiandi.sharding.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TOrderRepository tOrderRepository;
 
 
     @Override
@@ -56,5 +61,10 @@ public class OrderServiceImpl implements OrderService {
         orderDTO.setName(user.getName());
 
         return orderDTO;
+    }
+
+    @Override
+    public List<TOrder> findOrder(TOrder tOrder) {
+        return tOrderRepository.findOrder(tOrder);
     }
 }

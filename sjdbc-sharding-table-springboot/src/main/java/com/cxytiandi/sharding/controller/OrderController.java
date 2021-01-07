@@ -2,6 +2,7 @@ package com.cxytiandi.sharding.controller;
 
 import com.cxytiandi.sharding.dto.OrderDTO;
 import com.cxytiandi.sharding.po.Order;
+import com.cxytiandi.sharding.po.TOrder;
 import com.cxytiandi.sharding.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +50,12 @@ public class OrderController {
         return orderService.findUserOrderNotLeftJoin(userId,mobile);
 
     }
-	
 
+	@GetMapping("/getOrder/{id}")
+	public Object getOrder(@PathVariable Long id) {
+		TOrder tOrder = new TOrder();
+		tOrder.setOrderId(id);
+		return orderService.findOrder(tOrder);
+	}
 	
 }
