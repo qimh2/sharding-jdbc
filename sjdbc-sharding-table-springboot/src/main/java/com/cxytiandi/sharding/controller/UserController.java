@@ -1,5 +1,6 @@
 package com.cxytiandi.sharding.controller;
 
+import com.cxytiandi.sharding.dto.OrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,5 +41,11 @@ public class UserController {
 	public Object get(String name) {
 		return userService.findByName(name);
 	}
-	
+
+	@GetMapping("/getUserOrder/{id}")
+	public Object getUserOrder(@PathVariable Long id) {
+		OrderDTO orderDTO = new OrderDTO();
+		orderDTO.setId(id);
+		return userService.findUserOrder(orderDTO);
+	}
 }

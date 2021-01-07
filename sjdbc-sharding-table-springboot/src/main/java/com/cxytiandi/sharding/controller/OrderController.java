@@ -27,6 +27,7 @@ public class OrderController {
 			Order order = new Order();
 			order.setId(i);
 			order.setUserId(i);
+			order.setMobile("18317043115");
 			orderService.add(order);
 		}
 		return "success";

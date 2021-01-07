@@ -1,5 +1,7 @@
 package com.cxytiandi.sharding.service.impl;
 
+import com.cxytiandi.sharding.dto.OrderDTO;
+import com.cxytiandi.sharding.po.Order;
 import java.util.List;
 
 import com.cxytiandi.sharding.service.UserService;
@@ -32,5 +34,11 @@ public class UserServiceImpl implements UserService {
 	public User findByName(String name) {
 		return userRepository.findByName(name);
 	}
+
+	@Override
+	public List<OrderDTO> findUserOrder(OrderDTO orderDTO) {
+		return userRepository.findUserOrder(orderDTO);
+	}
+
 
 }
